@@ -9,9 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <h2 class="text-4xl font-semibold mb-6">{{ __('Search Employee') }}</h2>
-                <form class="flex items-center mb-6">
+                <form class="flex items-center mb-6" onsubmit="event.preventDefault(); searchEmployees()">
                     <input type="text" id="searchInput" placeholder="Enter employee name..." class="w-full max-w-md border rounded p-4 focus:outline-none">
-                    <x-primary-button class="px-8 py-4 ml-4" onclick="searchEmployees()">
+                    <x-primary-button type="submit" class="px-8 py-4 ml-4">
                         {{ __('Search') }}
                     </x-primary-button>
                 </form>
@@ -47,12 +47,20 @@
 
         function searchEmployees() {
             const searchInput = document.getElementById("searchInput").value.toLowerCase();
-            const filteredEmployees = employees.filter(employee => {
-                return employee.name.toLowerCase().includes(searchInput);
-            });
-
             const tableBody = document.getElementById("employeeTableBody");
             tableBody.innerHTML = "";
+
+            if (searchInput === "") {
+                return; // Don't proceed if searchInput is empty
+            }
+
+            const filteredEmployees = employees.filter(employee => {
+                // Check if the search input matches employee name or SSS number
+                return (
+                    employee.name.toLowerCase().includes(searchInput) ||
+                    employee.sssNumber.toLowerCase().includes(searchInput)
+                );
+            });
 
             filteredEmployees.forEach(employee => {
                 const row = document.createElement("tr");
