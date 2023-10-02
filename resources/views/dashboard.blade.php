@@ -5,6 +5,9 @@
         </h2>
     </x-slot>
 
+
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
@@ -30,6 +33,15 @@
         </div>
     </div>
 
+    <style>
+        /* Style the hyperlinks to look like plain text (remove underline and color) */
+        .clickable {
+            cursor: pointer;
+            text-decoration: underline;
+            color: blue;
+        }
+    </style>
+
     <script>
         const employees = [
             { name: "John Doe", sssNumber: "123456789" },
@@ -44,6 +56,7 @@
             { name: "Alivia Berry", sssNumber: "618924787" },
             // Add more dummy data here
         ];
+
 
         function searchEmployees() {
             const searchInput = document.getElementById("searchInput").value.toLowerCase();
@@ -65,8 +78,17 @@
             filteredEmployees.forEach(employee => {
                 const row = document.createElement("tr");
                 const nameCell = document.createElement("td");
+
+                // Set employee name as plain text with a class for styling
                 nameCell.textContent = employee.name;
-                nameCell.className = "border p-4";
+                nameCell.className = "border p-4 clickable";
+
+                // Add a click event listener to simulate the clickable behavior
+                nameCell.addEventListener("click", function() {
+                    // Handle the click event if needed
+                    console.log("Clicked on employee: " + employee.name);
+                });
+
                 const sssNumberCell = document.createElement("td");
                 sssNumberCell.textContent = employee.sssNumber;
                 sssNumberCell.className = "border p-4";
