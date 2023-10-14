@@ -31,7 +31,7 @@
             <thead>
                 <tr>
                     <th class="border-b px-4 py-2"></th>
-                    <th class="border-b px-4 py-2">Name</th>
+                    <th class="border-b px-4 py-2">Name of Employee</th>
                     <th class="border-b px-4 py-2">SS Number</th>
                     <th class="border-b px-4 py-2">SS</th>
                     <th class="border-b px-4 py-2">EC</th>
@@ -39,47 +39,47 @@
                     <th class="border-b px-4 py-2">Options</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="border-b px-4 py-2">1</td>
-                    <td class="border-b px-4 py-2 text-center">John Doe</td>
-                    <td class="border-b px-4 py-2 text-center">123-456-789</td>
-                    <td class="border-b px-4 py-2 text-center">100.00</td>
-                    <td class="border-b px-4 py-2 text-center">10.00</td>
-                    <td class="border-b px-4 py-2 text-center">110.00</td>
-                    <td class="border-b px-4 py-2 text-center">
-                    <button style="background-color: green; color: white;" class="font-bold py-2 px-4 rounded ">
-                            View
-                        </button>
-                    <button style="background-color: blue; color: white;" class="font-bold py-2 px-4 rounded  ml-2">
-                            Edit
-                        </button>
-                    <button style="background-color: red; color: white;" class="font-bold py-2 px-4 rounded ml-2">
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border-b px-4 py-2">2</td>
-                    <td class="border-b px-4 py-2 text-center">Jane Smith</td>
-                    <td class="border-b px-4 py-2 text-center">987-654-321</td>
-                    <td class="border-b px-4 py-2 text-center">150.00</td>
-                    <td class="border-b px-4 py-2 text-center">10.00</td>
-                    <td class="border-b px-4 py-2 text-center">160.00</td>
-                    <td class="border-b px-4 py-2 text-center">
-                        <button style="background-color: green; color: white;" class="font-bold py-2 px-4 rounded">
-                            View
-                        </button>
-                        <button style="background-color: blue; color: white;" class="font-bold py-2 px-4 rounded ml-2">
-                            Edit
-                        </button>
-                        <button style="background-color: red; color: white;" class="font-bold py-2 px-4 rounded ml-2">
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-                <!-- Add more rows with dummy data as needed -->
-            </tbody>
+                <tbody>
+                    @php
+                    $dummyData = [];
+                    for ($i = 1; $i <= 58; $i++) {
+                        $name = "Person " . $i;
+                        $ssNumber = rand(100, 999) . '-' . rand(10, 99) . '-' . rand(1000, 9999);
+                        $ss = number_format(rand(80, 200), 2);
+                        $ec = number_format(rand(5, 20), 2);
+                        $totalContribution = number_format($ss + $ec, 2);
+                        $dummyData[] = [
+                            'name' => $name,
+                            'ssNumber' => $ssNumber,
+                            'ss' => $ss,
+                            'ec' => $ec,
+                            'totalContribution' => $totalContribution
+                        ];
+                    }
+                    @endphp
+
+                    @foreach($dummyData as $index => $data)
+                    <tr>
+                        <td class="border-b px-4 py-2">{{ $index + 1 }}</td>
+                        <td class="border-b px-4 py-2 text-center">{{ $data['name'] }}</td>
+                        <td class="border-b px-4 py-2 text-center">{{ $data['ssNumber'] }}</td>
+                        <td class="border-b px-4 py-2 text-center">{{ $data['ss'] }}</td>
+                        <td class="border-b px-4 py-2 text-center">{{ $data['ec'] }}</td>
+                        <td class="border-b px-4 py-2 text-center">{{ $data['totalContribution'] }}</td>
+                        <td class="border-b px-4 py-2 text-center">
+                            <button style="background-color: green; color: white;" class="font-bold py-2 px-4 rounded">
+                                View
+                            </button>
+                            <button style="background-color: blue; color: white;" class="font-bold py-2 px-4 rounded ml-2">
+                                Edit
+                            </button>
+                            <button style="background-color: red; color: white;" class="font-bold py-2 px-4 rounded ml-2">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
         </table>
     </div>
 
@@ -137,6 +137,7 @@
             const uploadModal = document.getElementById('uploadModal');
             const nextButton = document.getElementById('nextButton');
             const formModal = document.getElementById('formModal');
+            const closeModalButton = document.getElementById('closeModalButton');
             const closeFormModalButton = document.getElementById('closeFormModalButton');
 
             addButton.addEventListener('click', () => {
@@ -150,6 +151,10 @@
 
             closeFormModalButton.addEventListener('click', () => {
                 formModal.classList.add('hidden');
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                uploadModal.classList.add('hidden');
             });
         </script>
 
