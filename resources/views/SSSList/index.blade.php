@@ -102,7 +102,7 @@
                     Next
                 </button>
             </div>
-        </div>
+    </div>
 <!-- Form after upload modal -->
     <div id="formModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
     <div class="modal-container bg-white w-96 mx-auto rounded shadow-lg p-6">
