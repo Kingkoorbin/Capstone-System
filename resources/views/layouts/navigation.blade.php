@@ -18,7 +18,12 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('SSSList.index')" :active="request()->routeIs('SSSList.index')">
-                        {{ __('SSS Contribution List') }}
+                        {{ __('SSS Archive') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('201Files.index')" :active="request()->routeIs('201Files.index')">
+                        {{ __('Employee Information') }}
                     </x-nav-link>
                 </div>
             </div>

@@ -26,6 +26,10 @@ Route::get('/SSSList', function () {
     return view('SSSList.index');
 })->middleware(['auth', 'verified'])->name('SSSList.index');
 
+Route::get('/201Files', function () {
+    return view('201Files.index');
+})->middleware(['auth', 'verified'])->name('201Files.index');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
