@@ -27,8 +27,13 @@ Route::get('/SSSList', function () {
 })->middleware(['auth', 'verified'])->name('SSSList.index');
 
 Route::get('/201Files', function () {
-    return view('201Files.index');
-})->middleware(['auth', 'verified'])->name('201Files.index');
+    return view('201Files.index2');
+})->middleware(['auth', 'verified'])->name('201Files.index2');
+
+Route::get('/201Files/show', function () {
+    return view('201Files.show');
+})->middleware(['auth', 'verified'])->name('201Files-show');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

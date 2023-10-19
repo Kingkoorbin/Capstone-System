@@ -22,7 +22,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('201Files.index')" :active="request()->routeIs('201Files.index')">
+                    <x-nav-link :href="route('201Files.index2')" :active="request()->routeIs('201Files.index2')">
                         {{ __('Employee Information') }}
                     </x-nav-link>
                 </div>
